@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLOW</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/d510b38842.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--NAVBAR SECTION-->
+   <nav class="navbar">
+    <div class="navbar__container">
+        <a href="/" id="navbar__logo">
+            <img src="img/logo.jpg" alt="Logo" class="navbar__logo-image" />
+          </a>   
+          <div class="language-dropdown">
+         <a href="/languages" class="language-btn">Language</a>
+            <ul class="language-options">
+                <li><a href="#" id="language-ar">العربية</a></li>
+                <li><a href="#" id="language-en">English</a></li>
+            </ul>
+        </div>
+         
+        <ul class="navbar__menu">
+            <li class="navbar__item">
+                <a href="/" class="navbar__links">Home</a>
+            </li>
+
+            <!--ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc-->
+            <li class="navbar__item">
+                <a href="#" class="navbar__links">Tracks</a>
+                <ul class="dropdown">
+                    <li><a id="Lin-P"href="Pline.html">Purple line</a></li>
+                    <li><a id="Lin-B"href="Bline.html">Blue line</a></li>
+                    <li><a id="Lin-R"href="Rline.html">Red line</a></li>
+                    <li><a id="Lin-O"href="Oline.html">Orange line</a></li>
+                    <li><a id="Lin-Y"href="Yline.html">Yellow line</a></li>
+                    <li><a id="Lin-G"href="Gline.html">Green line</a></li>
+                </ul>
+            </li>
+            <li class="navbar__item">
+                <a href="#" class="navbar__links">Tickets</a>
+                <ul class="dropdown">
+                    <li><a id="T-Buy"href="buyTicket.html">Buy Ticket</a></li>
+                    <li><a id="T-My"href="MyTicket.html">My Ticket</a></li>
+                </ul>
+            </li>
+            <li class="navbar__item">
+                <a href="#" class="navbar__links">Plan</a>
+                <ul class="dropdown">
+                    <li><a id="P-PYT"href="trip-planning.html">Plan Your Trip</a></li>
+                    <li><a id="P-VS"href="ViewSchedule.html">View Schedule</a></li>
+                </ul>
+            </li>
+            <li class="navbar__btn a">
+                <a href="SingIn.html" class="button">Sign In</a>
+            </li>
+        </ul>
+    </div>
+   </nav>
+
+   <!--HERO SECTION-->
+   <div class="main">
+    <div class="main__container">
+        <div class="main__content">
+            <h1 id="hero-title">Your next ride</h1>
+            <h2 id="hero-subtitle">is just a tap away!</h2>
+            <p id="hero-description">see what makes us different.</p>
+            <button class="main__btn">
+                <a id="button-signUp"href="SignUp.html">Sign Up</a>
+            </button>
+        </div>
+        <div class="main_img--container">
+            <img src="img/map.png" alt="map" id="main__img">
+        </div>
+    </div>
+   </div>
+   <!--SERVICES SECTION-->
+   <div class="services">
+    <H1>Service For People With Need</H1>
+    <div class="services__container">
+        <div class="services__card">
+            <h2>Metro Lines</h2>
+            <a href="LinesNeed.html">
+                <button class="charge-btn">Explore</button>
+            </a>
+        </div>
+        <div class="services__card">
+            <h2>Stations</h2>
+            <a href="StationNeed.html">
+                <button class="charge-btn">Explore</button>
+            </a>
+        </div>
+    </div>
+   </div>
+   <!--FOOTER SECTION-->
+   <div class="footer__container">
+    <div class="footer__links">
+        <div class="footer__link--wrapper">
+            <div class="footer__link--items">
+                <h2>Help</h2>
+                <a href="/">Contact Us</a>
+                <a href="ChatBot.html">Chat Bot</a>
+                <a href="/">Terms Of Service</a>
+            </div>
+        </div>
+    </div>
+    <!--hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhherrre-->
+            <div class="footer__logo">
+                <a href="/" id="navbar__logo">
+                    <img src="img/logo.jpg" alt="Logo" class="navbar__logo-image" />
+                  </a>  
+            </div>
+            <p class="website__rights">FLOW 2025. All rights reserved</p>
+        </div>
+    </div>
+   </div>
+   <script src="app.js"></script>
+</body>
+</html>

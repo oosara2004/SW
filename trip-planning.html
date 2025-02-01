@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/d510b38842.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station Route Finder</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Kumbh Sans', sans-serif;
+        }
+        
+        .navbar{
+            background: #fff;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .navbar {
+            background: #fff;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 999; 
+          }
+        
+        .navbar__container{
+            display: flex;
+            justify-content: space-between;
+            height: 80px;
+            z-index: 1;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+        
+        #navbar__logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .navbar__logo-image {
+            width: 200px; 
+            height: auto; 
+            border-radius: 4px; 
+        }
+        
+        
+        .fa-gem{
+            margin-right: 0.5rem;
+        }
+        
+        .navbar__menu{
+            display: flex;
+            align-items: center;
+            list-style: none;
+            text-align: center;
+        }
+        
+        .navbar__item{
+            height: 80px;
+        }
+        
+        .navbar__links{
+            color: #1b1741;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 0 1rem;
+            height: 100%;
+        }
+        
+        .navbar__btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 1rem;
+            width: 100%;
+        }
+        
+        .button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            padding: 10px 20px;
+            height: 100%;
+            width: 100%;
+            border: none;
+            outline: none;
+            border-radius: 4px;
+            background: #1b1741;
+            color: #fff;
+        }
+        
+        .button:hover{
+            background: rgb(224, 230, 111);
+            transition: all 0.3s ease;
+        
+        }
+        
+        .navbar__links:hover{
+            color: yellowgreen;
+            transition: all 0.3s ease;
+        }
+        
+        @media screen and (max-width: 960px){
+            .navbar__container{
+                display: flex;
+                justify-content: space-between;
+                height: 80px;
+                z-index: 1;
+                width: 100%;
+                max-width: 1300px;
+                padding: 0;
+            }
+            .navbar__menu{
+                display: grid;
+                grid-template-columns: auto;
+                margin: 0;
+                width: 100%;
+                position: absolute;
+                top: -1000px;
+                opacity: 0;
+                transition: all 0.5s ease;
+                height: 50vh;
+                z-index: -1;
+                background: #fff;
+            }
+        
+            .navbar__menu.active{
+                background: #fff;
+                top: 100%;
+                opacity: 1;
+                transition: all 0.5s ease;
+                z-index: 99;
+                height: 50vh;
+                font-size: 1.5rem;
+            }
+        
+            #navbar__logo{
+                padding-left: 25px;
+            }
+        
+            .navbar__toggle.bar{
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                transition: all 0.3s ease-in-out;
+                background: #141414;
+            }
+        
+            .navbar__item{
+                width: 100%;
+            }
+        
+            .navbar__links{
+                text-align: center;
+                padding: 2rem;
+                width: 100%;
+                display: table;
+            }
+        
+            #mobile-menu{
+                position: absolute;
+                top: 20%;
+                right: 5%;
+                transform: translate(5%,20%);
+            }
+        
+            .navbar__btn{
+                padding-bottom: 2rem;
+            }
+        
+            .button{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+                height: 80px;
+                margin: 0;
+            }
+      
+            .navbar__toggle .bar{
+                display: block;
+                cursor: pointer;
+            }
+            #mobile-menu.is-active .bar:nth-child(2){
+                opacity: 0;
+            }
+            #mobile-menu.is-active .bar:nth-child(1){
+                transform: translate(8px) rotate(45deg);
+            }
+            #mobile-menu.is-active .bar:nth-child(3){
+                transform: translate(-8px) rotate(-45deg);
+            }
+        }
+        
+      
+        .main{
+            background-color:#fff;
+        }
+        
+        .main__container{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            justify-self: center;
+            margin: 0 auto;
+            height: 90v;
+            background-color: #fff;
+            z-index: 1;
+            width: 100%;
+            max-width: 1300px;
+            padding: 0 50px;
+        }
+        
+        .main__content h1 {
+            font-size: 4rem;
+            background-color: #655e9f;
+            background-image: linear-gradient(to top, #1b1741 0%, #4132c9 100%);
+            background-size: 100%;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -moz-text-fill-color: transparent;
+        }
+        
+        .main__content h2 {
+            font-size: 4rem;
+            background-color: #1b1741;
+            background-image: linear-gradient(to top, #1b1741 0%, #4132c9 100%);
+            background-size: 100%;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -moz-text-fill-color: transparent;
+        }
+        
+        .main__content p{
+            margin-top: 1rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: yellowgreen;
+        }
+        
+        .main__btn {
+          font-size: 1rem;
+          background-image: linear-gradient(to top, #1b1741 0%, #4132c9 100% );  
+          padding: 14px 32px;
+          border: none;
+          border-radius: 4px;
+          color: #141414;
+          margin-top: 2rem;
+          cursor: pointer;
+          position: relative;
+          transition: all 0.35s;
+          outline: none;
+        }
+        
+        .main__btn a {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .main__btn:after {
+            position:absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgb(224, 230, 111);
+            transition: all 0.35s;
+            border-radius: 4px;
+        }
+        
+        .main__btn:hover {
+            color: #141414;
+        }
+        
+        .main__btn:hover:after {
+            width: 100%;
+        }
+        
+        .main__img--container {
+            text-align: center;
+        }
+        
+        #main__img {
+            height: 80%;
+            width: 80%;
+        }
+        
+       
+        @media screen and (max-width: 768px) {
+            .main__container{
+                display: grid;
+                grid-template-columns: auto;
+                align-items: center;
+                justify-self: center;
+                width: 100%;
+                margin: 0 auto;
+                height: 90vh;
+            }
+        
+            .main__content {
+                text-align: center;
+                margin-bottom: 4rem;
+            }
+        
+            .main__content h1 {
+                font-size: 2.5rem;
+                margin-top: 2rem;
+            }
+        
+            .main__content h2 {
+                font-size: 3rem;
+            }
+        
+            .main__content p {
+               margin-top: 1rem;
+               font-size: 1.5rem; 
+            }
+        }
+        
+        @media screen and (max-width: 480px){
+            .main__content h1 {
+                font-size: 2rem;
+                margin-top: 3rem;
+            }
+        
+            .main__content h2 {
+                font-size: 2rem;
+            }
+        
+            .main__content p {
+               margin-top: 2rem;
+               font-size: 1.5rem; 
+            }
+        
+            .main__btn{
+                padding: 12px 36px;
+                margin: 2.5rem 0;
+            }
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 50px;
+        }
+        .dropdown {
+            display: none; /* Hide dropdown by default */
+            position: absolute;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            list-style: none;
+        }
+        
+        .navbar__item:hover .dropdown {
+            display: block; /* Show dropdown on hover */
+        }
+        
+        .dropdown li {
+            padding: 10px;
+        }
+        
+        .dropdown li a {
+            color: #084670e6;
+            text-decoration: none;
+        }
+        
+        .dropdown li a:hover {
+            background: rgba(38, 107, 168, 0.346); /* Change background on hover */
+        }
+        .form-wrapper {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;    /* Center vertically */
+            height: 100vh;         /* Full viewport height */
+            position: relative;     /* Position relative for child centering */
+        }
+        .line-box {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .line-box:hover {
+            transform: scale(1.1);
+        }
+        #footer__logo{
+            color: #1b1741;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 2rem;
+        }
+        
+        .footer__links{
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .footer__links--wrapper{
+            display: flex;
+        }
+        
+        .footer__link--items{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 16px;
+            text-align: left;
+            width: 160px;
+            box-sizing: border-box;
+        }
+        
+        .footer__link--items h2{
+            margin-bottom: 16px;
+        }
+        
+        .footer__link--items > h2 {
+            color: #1b1741;
+        }
+        
+        .footer__link--items a{
+            color: #1b1741;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer__link--items a:hover{
+            color: #090950;
+            transition: 0.3s ease-out;
+        }
+        
+        .social__media {
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        .social__media--warp {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 50%;
+            max-width: 1000px;
+            margin: 40px auto 0 auto;
+        }
+        
+        .social__logo {
+            color: #090950;
+            justify-self: flex-start;
+            margin-left: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 3rem;
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .website__rights {
+            color: #1b1741;
+        }
+        
+        @media screen and (max-width: 820px){
+            .footer__links{
+                padding-top: 2rem;
+            }
+        
+            #footer__logo{
+                margin-bottom: 2rem;
+            }
+        
+            .website__rights{
+                margin-bottom: 2rem;
+            }
+        
+            .footer__links--wrapper{
+                flex-direction: column;
+            }
+        
+            .social__media--warp{
+                flex-direction: column;
+            }
+        }
+        
+        @media screen and (max-width: 480px){
+            .footer__link--items{
+                margin: 0;
+                padding: 10px;
+                width: 100%;
+            }}
+    </style>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="/" id="navbar__logo">
+                <img src="img/logo.jpg" alt="Logo" class="navbar__logo-image" />
+            </a>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="/" class="navbar__links">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#" class="navbar__links">Tracks</a>
+                    <ul class="dropdown">
+                        <li><a id="Lin-P" href="Pline.html">Purple line</a></li>
+                        <li><a id="Lin-B" href="Bline.html">Blue line</a></li>
+                        <li><a id="Lin-R" href="Rline.html">Red line</a></li>
+                        <li><a id="Lin-O" href="Oline.html">Orange line</a></li>
+                        <li><a id="Lin-Y" href="Yline.html">Yellow line</a></li>
+                        <li><a id="Lin-G" href="Gline.html">Green line</a></li>
+                    </ul>
+                </li>
+                <li class="navbar__item">
+                    <a href="#" class="navbar__links">Tickets</a>
+                    <ul class="dropdown">
+                        <li><a id="T-Buy" href="buyTicket.html">Buy Ticket</a></li>
+                        <li><a id="T-My" href="MyTicket.html">My Ticket</a></li>
+                    </ul>
+                </li>
+                <li class="navbar__item">
+                    <a href="#" class="navbar__links">Plan</a>
+                    <ul class="dropdown">
+                        <li><a id="P-PYT" href="trip-planning.html">Plan Your Trip</a></li>
+                        <li><a id="P-VS" href="ViewSchedule.html">View Schedule</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Metro Route Finder Section -->
+    <div class="container">
+        <div class="box">
+            <p>Enter your location:</p>
+            <select id="location">
+                <option value="Abu Dhabi Square">Abu Dhabi Square</option>
+                <option value="ADhahrat Al Badiah">ADhahrat Al Badiah</option>
+                <option value="ADharat Al Badiah">ADharat Al Badiah</option>
+                <option value="Ad Dhabab">Ad Dhabab</option>
+                <option value="Ad Douh">Ad Douh</option>
+                <option value="Airport T1-2">Airport T1-2</option>
+                <option value="Airport T3-4">Airport T3-4</option>
+                <option value="Airport T5">Airport T5</option>
+                <option value="Aishah bint Abi Bakr Street">Aishah bint Abi Bakr Street</option>
+                <option value="Al Andalus">Al Andalus</option>
+                <option value="Al Aziziah">Al Aziziah</option>
+                <option value="Al Bat'ha">Al Bat'ha</option>
+                <option value="Al Hamra">Al Hamra</option>
+                <option value="Al Hilla">Al Hilla</option>
+                <option value="Al Iman Hospital">Al Iman Hospital</option>
+                <option value="Al Jarradiyah">Al Jarradiyah</option>
+                <option value="Al Khaleej">Al Khaleej</option>
+                <option value="Al Malaz">Al Malaz</option>
+                <option value="Al Margab">Al Margab</option>
+                <option value="Al Murooj">Al Murooj</option>
+                <option value="Al Murabba">Al Murabba</option>
+                <option value="Al Owd">Al Owd</option>
+                <option value="Al Rajhi Grand Mosque">Al Rajhi Grand Mosque</option>
+                <option value="Al Urubah">Al Urubah</option>
+                <option value="Al Wazarat">Al Wazarat</option>
+                <option value="Al Wurud 2">Al Wurud 2</option>
+                <option value="Al Yarmuk">Al Yarmuk</option>
+                <option value="Al-Wurud">Al-Wurud</option>
+                <option value="An Naseem">An Naseem</option>
+                <option value="An Nuzhah">An Nuzhah</option>
+                <option value="Ar Rabi">Ar Rabi</option>
+                <option value="As Salam">As Salam</option>
+                <option value="As Salhiyah">As Salhiyah</option>
+                <option value="As Sulimaniyah">As Sulimaniyah</option>
+                <option value="At Takhassusi">At Takhassusi</option>
+                <option value="Bank Albilad">Bank Albilad</option>
+                <option value="Courts Complex">Courts Complex</option>
+                <option value="Dr.Sulaiman Al Habib">Dr.Sulaiman Al Habib</option>
+                <option value="First Industrial City">First Industrial City</option>
+                <option value="GOSI">GOSI</option>
+                <option value="Granadia">Granadia</option>
+                <option value="Harun Ar Rashid Road">Harun Ar Rashid Road</option>
+                <option value="Hassan Bin Thabit Street">Hassan Bin Thabit Street</option>
+                <option value="Ishbiliyah">Ishbiliyah</option>
+                <option value="Jarir District">Jarir District</option>
+                <option value="Jeddah Road">Jeddah Road</option>
+                <option value="KACST">KACST</option>
+                <option value="KAFD">KAFD</option>
+                <option value="Khalid Bin Alwaleed Road">Khalid Bin Alwaleed Road</option>
+                <option value="Khashm Al An">Khashm Al An</option>
+                <option value="Khurais Road">Khurais Road</option>
+                <option value="King Abdulaziz Road">King Abdulaziz Road</option>
+                <option value="King Fahad District">King Fahad District</option>
+                <option value="King Fahad District 2">King Fahad District 2</option>
+                <option value="King Fahad Library">King Fahad Library</option>
+                <option value="King Fahad Sports City">King Fahad Sports City</option>
+                <option value="King Salman Oasis">King Salman Oasis</option>
+                <option value="King Salman Park">King Salman Park</option>
+                <option value="King Saud University">King Saud University</option>
+                <option value="Manfouhah">Manfouhah</option>
+                <option value="Ministry of Defence">Ministry of Defence</option>
+                <option value="Ministry of Education">Ministry of Education</option>
+                <option value="Ministry of Interior">Ministry of Interior</option>
+                <option value="National Museum">National Museum</option>
+                <option value="Officers Club">Officers Club</option>
+                <option value="Passport Department">Passport Department</option>
+                <option value="PNU1">PNU1</option>
+                <option value="PNU2">PNU2</option>
+                <option value="Qasr Al Hokm">Qasr Al Hokm</option>
+                <option value="Railway">Railway</option>
+                <option value="Riyadh Exhibition Center">Riyadh Exhibition Center</option>
+                <option value="SAB Bank">SAB Bank</option>
+                <option value="SABIC">SABIC</option>
+                <option value="Skirinah">Skirinah</option>
+                <option value="STC">STC</option>
+                <option value="Sultanah">Sultanah</option>
+                <option value="Transportation Center">Transportation Center</option>
+                <option value="Tuwaiq">Tuwaiq</option>
+                <option value="Uthman Bin Affan Road">Uthman Bin Affan Road</option>
+                <option value="Western Station">Western Station</option>
+            </select>
+
+            <p>Enter the destination:</p>
+            <select id="destination">
+                <option value="Abu Dhabi Square">Abu Dhabi Square</option>
+                <option value="ADhahrat Al Badiah">ADhahrat Al Badiah</option>
+                <option value="ADharat Al Badiah">ADharat Al Badiah</option>
+                <option value="Ad Dhabab">Ad Dhabab</option>
+                <option value="Ad Douh">Ad Douh</option>
+                <option value="Airport T1-2">Airport T1-2</option>
+                <option value="Airport T3-4">Airport T3-4</option>
+                <option value="Airport T5">Airport T5</option>
+                <option value="Aishah bint Abi Bakr Street">Aishah bint Abi Bakr Street</option>
+                <option value="Al Andalus">Al Andalus</option>
+                <option value="Al Aziziah">Al Aziziah</option>
+                <option value="Al Bat'ha">Al Bat'ha</option>
+                <option value="Al Hamra">Al Hamra</option>
+                <option value="Al Hilla">Al Hilla</option>
+                <option value="Al Iman Hospital">Al Iman Hospital</option>
+                <option value="Al Jarradiyah">Al Jarradiyah</option>
+                <option value="Al Khaleej">Al Khaleej</option>
+                <option value="Al Malaz">Al Malaz</option>
+                <option value="Al Margab">Al Margab</option>
+                <option value="Al Murooj">Al Murooj</option>
+                <option value="Al Murabba">Al Murabba</option>
+                <option value="Al Owd">Al Owd</option>
+                <option value="Al Rajhi Grand Mosque">Al Rajhi Grand Mosque</option>
+                <option value="Al Urubah">Al Urubah</option>
+                <option value="Al Wazarat">Al Wazarat</option>
+                <option value="Al Wurud 2">Al Wurud 2</option>
+                <option value="Al Yarmuk">Al Yarmuk</option>
+                <option value="Al-Wurud">Al-Wurud</option>
+                <option value="An Naseem">An Naseem</option>
+                <option value="An Nuzhah">An Nuzhah</option>
+                <option value="Ar Rabi">Ar Rabi</option>
+                <option value="As Salam">As Salam</option>
+                <option value="As Salhiyah">As Salhiyah</option>
+                <option value="As Sulimaniyah">As Sulimaniyah</option>
+                <option value="At Takhassusi">At Takhassusi</option>
+                <option value="Bank Albilad">Bank Albilad</option>
+                <option value="Courts Complex">Courts Complex</option>
+                <option value="Dr.Sulaiman Al Habib">Dr.Sulaiman Al Habib</option>
+                <option value="First Industrial City">First Industrial City</option>
+                <option value="GOSI">GOSI</option>
+                <option value="Granadia">Granadia</option>
+                <option value="Harun Ar Rashid Road">Harun Ar Rashid Road</option>
+                <option value="Hassan Bin Thabit Street">Hassan Bin Thabit Street</option>
+                <option value="Ishbiliyah">Ishbiliyah</option>
+                <option value="Jarir District">Jarir District</option>
+                <option value="Jeddah Road">Jeddah Road</option>
+                <option value="KACST">KACST</option>
+                <option value="KAFD">KAFD</option>
+                <option value="Khalid Bin Alwaleed Road">Khalid Bin Alwaleed Road</option>
+                <option value="Khashm Al An">Khashm Al An</option>
+                <option value="Khurais Road">Khurais Road</option>
+                <option value="King Abdulaziz Road">King Abdulaziz Road</option>
+                <option value="King Fahad District">King Fahad District</option>
+                <option value="King Fahad District 2">King Fahad District 2</option>
+                <option value="King Fahad Library">King Fahad Library</option>
+                <option value="King Fahad Sports City">King Fahad Sports City</option>
+                <option value="King Salman Oasis">King Salman Oasis</option>
+                <option value="King Salman Park">King Salman Park</option>
+                <option value="King Saud University">King Saud University</option>
+                <option value="Manfouhah">Manfouhah</option>
+                <option value="Ministry of Defence">Ministry of Defence</option>
+                <option value="Ministry of Education">Ministry of Education</option>
+                <option value="Ministry of Interior">Ministry of Interior</option>
+                <option value="National Museum">National Museum</option>
+                <option value="Officers Club">Officers Club</option>
+                <option value="Passport Department">Passport Department</option>
+                <option value="PNU1">PNU1</option>
+                <option value="PNU2">PNU2</option>
+                <option value="Qasr Al Hokm">Qasr Al Hokm</option>
+                <option value="Railway">Railway</option>
+                <option value="Riyadh Exhibition Center">Riyadh Exhibition Center</option>
+                <option value="SAB Bank">SAB Bank</option>
+                <option value="SABIC">SABIC</option>
+                <option value="Skirinah">Skirinah</option>
+                <option value="STC">STC</option>
+                <option value="Sultanah">Sultanah</option>
+                <option value="Transportation Center">Transportation Center</option>
+                <option value="Tuwaiq">Tuwaiq</option>
+                <option value="Uthman Bin Affan Road">Uthman Bin Affan Road</option>
+                <option value="Western Station">Western Station</option>
+            </select>
+
+            <button onclick="findBestRoute()">The best route is:</button>
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <!-- Link to your JavaScript file -->
+    <script src="script2.js"></script></body>
+</html>

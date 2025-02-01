@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Ticket</title>
+    <link rel="stylesheet" href="MyTicket.css">
+</head>
+<body>
+    <!--NAVBAR SECTION-->
+    <nav class="navbar">
+     <div class="navbar__container">
+         <a href="/" id="navbar__logo">
+             <img src="img/logo.jpg" alt="Logo" class="navbar__logo-image">
+           </a>    
+         <ul class="navbar__menu">
+             <li class="navbar__item">
+                 <a href="SignHome.html" class="navbar__links">Home</a>
+             </li>
+           
+             <!--ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc-->
+             <li class="navbar__item">
+                 <a href="#" class="navbar__links">Tracks</a>
+                 <ul class="dropdown">
+                     <li><a id="Lin-P" href="Pline.html">Purple line</a></li>
+                     <li><a id="Lin-B" href="Bline.html">Blue line</a></li>
+                     <li><a id="Lin-R" href="Rline.html">Red line</a></li>
+                     <li><a id="Lin-O" href="Oline.html">Orange line</a></li>
+                     <li><a id="Lin-Y" href="Yline.html">Yellow line</a></li>
+                     <li><a id="Lin-G" href="Gline.html">Green line</a></li>
+                 </ul>
+             </li>
+             <li class="navbar__item">
+                 <a href="#" class="navbar__links">Tickets</a>
+                 <ul class="dropdown">
+                     <li><a id="T-Buy" href="buyTicket.html">Buy Ticket</a></li>
+                     <li><a id="T-My" href="myTicket.html">My Ticket</a></li>
+                     <li><a id="T-digital" href="Digital.html">Digital Ticket</a></li>
+                 </ul>
+             </li>
+             <li class="navbar__item">
+                 <a href="#" class="navbar__links">Plan</a>
+                 <ul class="dropdown">
+                     <li><a id="P-PYT" href="trip-planning.html">Plan Your Trip</a></li>
+                     <li><a id="P-VS" href="ViewSchedule.html">View Schedule</a></li>
+                     <li><a id="P-V" href="tripHistory.html">Trip History</a></li>
+                 </ul>
+             </li>
+             <li class="navbar__item">
+                 <a href="Account.html" class="navbar__links">Account</a>
+         
+             </li>
+         </ul>
+     </div>
+    </nav>
+   <div class="main">
+     <div class="main__container">
+         <div class="main__content">
+             <h1 id="hero-title">My Tickets</h1> 
+         </div>
+     </div>
+ </div>
+ <div class="services__card">
+    <div id="tickets-container" class="tickets-container">
+ </div>
+</div>
+ 
+ <script>
+     // دالة لعرض التذاكر
+     function displayTickets() {
+         const tickets = JSON.parse(localStorage.getItem('myTickets')) || [];
+         const container = document.getElementById('tickets-container');
+ 
+         if (tickets.length === 0) {
+             container.innerHTML = '<p>No have tickets yet.</p>';
+             return;
+         }
+ 
+         tickets.forEach(ticket => {
+             const ticketDiv = document.createElement('div');
+             ticketDiv.className = 'ticket';
+             ticketDiv.innerHTML = `<h2>${ticket.type}</h2><p>${ticket.duration} - ${ticket.price}</p>`;
+             container.appendChild(ticketDiv);
+         });
+     }
+    
+     // استدعاء الدالة عند تحميل الصفحة
+     window.onload = displayTickets;
+ </script>
+ 
+ 
+ </body>
+</html>

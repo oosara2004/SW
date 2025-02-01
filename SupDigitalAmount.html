@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Charge Amount</title>
+    <link rel="stylesheet" href="Pay.css">
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Payment Details</h2>
+        <form action="#" method="post">
+            <label for="amount">Amount</label>
+            <input type="text" id="amount" placeholder="Enter The Amount As Needed" required>
+            <a href="NoChargePay.html">
+            <button type="button" class="button" onclick="addAmount()">Submit Amount</button>
+        </a>    
+        </form>
+    </div>
+    <script>
+        function addAmount() {
+            let amountInput = document.getElementById('amount').value;
+            let amount = parseFloat(amountInput);
+
+            if (!isNaN(amount)) {
+                // Get the current stored total from localStorage or set to 0 if not found
+                let currentTotal = parseFloat(localStorage.getItem('totalAmount')) || 0;
+                
+                // Add the new amount to the current total
+                let newTotal = currentTotal + amount;
+
+                // Save the new total in localStorage
+                localStorage.setItem('totalAmount', newTotal);
+
+                // Redirect to Digital.html to see the updated amount
+                window.location.href = 'Digital.html';
+            } else {
+                alert('Please enter a valid number.');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Information</title>
+    <link rel="stylesheet" href="Account.css">
+</head>
+<body>  
+    <!--NAVBAR SECTION-->
+    <nav class="navbar">
+     <div class="navbar__container">
+         <a href="/" id="navbar__logo">
+             <img src="img/logo.jpg" alt="Logo" class="navbar__logo-image">
+           </a>  
+           <div class="language-dropdown">
+            <a href="/languages" class="language-btn">Language</a>
+               <ul class="language-options">
+                   <li><a href="#" id="language-ar">العربية</a></li>
+                   <li><a href="#" id="language-en">English</a></li>
+               </ul>
+           </div>  
+         <ul class="navbar__menu">
+             <li class="navbar__item">
+                 <a href="SignHome.html" class="navbar__links">Home</a>
+             </li>
+             <!--cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc-->
+             <!--ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc-->
+             <li class="navbar__item">
+                 <a href="#" class="navbar__links">Tracks</a>
+                 <ul class="dropdown">
+                     <li><a id="Lin-P" href="Pline.html">Purple line</a></li>
+                     <li><a id="Lin-B" href="Bline.html">Blue line</a></li>
+                     <li><a id="Lin-R" href="Rline.html">Red line</a></li>
+                     <li><a id="Lin-O" href="Oline.html">Orange line</a></li>
+                     <li><a id="Lin-Y" href="Yline.html">Yellow line</a></li>
+                     <li><a id="Lin-G" href="Gline.html">Green line</a></li>
+                 </ul>
+             </li>
+             <li class="navbar__item">
+                 <a href="#" class="navbar__links">Tickets</a>
+                 <ul class="dropdown">
+                     <li><a id="T-Buy" href="buyTicket.html">Buy Ticket</a></li>
+                     <li><a id="T-My" href="myTicket.html">My Ticket</a></li>
+                     <li><a id="T-digital" href="Digital.html">Digital Ticket</a></li>
+                 </ul>
+             </li>
+             <li class="navbar__item">
+                 <a href="#" class="navbar__links">Plan</a>
+                 <ul class="dropdown">
+                     <li><a id="P-PYT" href="trip-planning.html">Plan Your Trip</a></li>
+                     <li><a id="P-VS" href="ViewSchedule.html">View Schedule</a></li>
+                     <li><a id="P-V" href="tripHistory.html">Trip History</a></li>
+                 </ul>
+             </li>
+             <li class="navbar__item">
+                 <a href="Account.html" class="navbar__links">Account</a>
+         
+             </li>
+         </ul>
+     </div>
+    </nav>
+    <div class="services">
+        <div class="services__container">
+            <div class="services__card">
+                <h1>Account Information</h1>
+                <div class="info">
+                    <div class="box"><p><strong>First Name:</strong> <span id="first-name">John</span></p></div>
+                    <div class="box"><p><strong>Last Name:</strong> <span id="last-name">Doe</span></p></div>
+                    <div class="box"><p><strong>Username:</strong> <span id="username">Username</span></p></div>
+                    <div class="box"><p><strong>Email:</strong> <span id="email">Email@example.com</span></p></div>
+                    <div class="box"><p><strong>Phone:</strong> <span id="phone">+1234567890</span></p></div>
+                    <div class="box"><p><strong>Password:</strong> <span id="password">******</span></p></div>
+                    <button id="edit-btn">Edit Information</button>
+                    <button id="save-btn" style="display:none;">Save</button>
+                </div>
+            </div>
+            <div class="services__card">
+                <h2>Members</h2>
+                <div class="members" id="membersList"><div class="box"><p><strong>SARA</strong> - Other</p></div></div>
+                <a href="addMember.html">
+                    <div class="b1">
+                        <button>Add New Member</button>
+                    </div>
+                </a>
+            </div>
+            <!--FOOTER SECTION-->
+   <div class="footer__container">
+    <div class="footer__links">
+        <div class="footer__link--wrapper">
+            <div class="footer__link--items">
+                <h2>Help</h2>
+                <a href="/">Contact Us</a>
+                <a href="ChatBot.html">Chat Bot</a>
+                <a href="/">Terms Of Service</a>
+            </div>
+        </div>
+    </div>
+    <!--hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhherrre-->
+            <div class="footer__logo">
+                <a href="/" id="navbar__logo">
+                    <img src="img/logo.jpg" alt="Logo" class="navbar__logo-image" />
+                  </a>  
+            </div>
+            <p class="website__rights">FLOW 2025. All rights reserved</p>
+        </div>
+    </div>
+   </div>
+            <script>
+              
+                function loadMembers() {
+                    let members = JSON.parse(localStorage.getItem("members")) || [];
+                    let membersList = document.getElementById("membersList");
+            
+                  
+                    membersList.innerHTML = "";
+            
+                   
+                    members.forEach((member, index) => {
+                        let memberDiv = document.createElement("div");
+                        memberDiv.classList.add("box");
+                        memberDiv.innerHTML = `<p><strong>${member.fullName}</strong> - ${member.relationship}</p>`;
+                        membersList.appendChild(memberDiv);
+                    });
+                }
+            
+                
+                document.addEventListener("DOMContentLoaded", loadMembers);
+            </script>
+            
+            </div>
+        </div>
+        <script src="Account.js"></script>
+</body>
+</html>

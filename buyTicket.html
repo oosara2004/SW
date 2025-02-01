@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Ticket</title>
+    <link rel="stylesheet" href="buyTicket.css">
+</head>
+<body>
+    <!--NAVBAR SECTION-->
+  <nav class="navbar">
+   <div class="navbar__container">
+       <a href="/" id="navbar__logo">
+           <img src="img/logo.jpg" alt="Logo" class="navbar__logo-image">
+         </a>    
+       <ul class="navbar__menu">
+           <li class="navbar__item">
+               <a href="/" class="navbar__links">Home</a>
+           </li>
+           <li class="navbar__item">
+               <a href="#" class="navbar__links">Tracks</a>
+               <ul class="dropdown">
+                   <li><a id="Lin-P" href="Pline.html">Purple line</a></li>
+                   <li><a id="Lin-B" href="Bline.html">Blue line</a></li>
+                   <li><a id="Lin-R" href="Rline.html">Red line</a></li>
+                   <li><a id="Lin-O" href="Oline.html">Orange line</a></li>
+                   <li><a id="Lin-Y" href="Yline.html">Yellow line</a></li>
+                   <li><a id="Lin-G" href="Gline.html">Green line</a></li>
+               </ul>
+           </li>
+           <li class="navbar__item">
+               <a href="#" class="navbar__links">Tickets</a>
+               <ul class="dropdown">
+                   <li><a id="T-Buy" href="buyTicket.html">Buy Ticket</a></li>
+                   <li><a id="T-My" href="myTicket.html">My Ticket</a></li>
+                   <li><a id="T-digital" href="Digital.html">Digital Ticket</a></li>
+               </ul>
+           </li>
+           <li class="navbar__item">
+               <a href="#" class="navbar__links">Plan</a>
+               <ul class="dropdown">
+                   <li><a id="P-PYT" href="trip-planning.html">Plan Your Trip</a></li>
+                   <li><a id="P-VS" href="ViewSchedule.html">View Schedule</a></li>
+                   <li><a id="P-V" href="tripHistory.html">Trip History</a></li>
+               </ul>
+           </li>
+           <li class="navbar__item">
+               <a href="Account.html" class="navbar__links">Account</a>
+       
+           </li>
+       </ul>
+   </div>
+  </nav>
+
+  <div class="main">
+   <div class="main__container">
+       <div class="main__content">
+           <h1 id="hero-title">We have a variety of ticket fares to choose from</h1>
+           <h2 id="hero-title">Choose the fare that appeals to you!</h2>
+           <p id="hero-subtitle">Note: Children under the age of six can travel for free.</p>
+       </div>
+   </div>
+</div>
+   
+<div class="col-12_right-side_ticket-top-content-wrapper">
+   <div>
+       <h3 id="hero-title">First Class:</h3>
+       <hr>
+       <p id="hero-subtitle">These offer a premium experience with enhanced comfort for a more luxurious travel option.</p>
+       <div class="tickets my-5">
+
+           <!-- First Class Tickets -->
+           <div class="inner-wrapper">
+               <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon-brown.png"></div>
+               <a href="pay.html" class="ticket-link" onclick="addTicketToLocalStorage('First-class', '2-hour pass', 'SAR 10')">
+                   <div class="col-md-3 improve-card-item ticket first-class-ticket">
+                       <div class="inner-wrapper">
+                           <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon-brown.png"></div>
+                           <h3>SAR 10</h3>
+                           <h6>First-class</h6>
+                           <h6>2-hour pass</h6>
+                       </div>
+                   </div>
+               </a>
+           </div>
+
+           <div class="inner-wrapper">
+               <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon-brown.png"></div>
+               <a href="pay.html" class="ticket-link" onclick="addTicketToLocalStorage('First-class', '3-day pass', 'SAR 50')">
+                   <div class="col-md-3 improve-card-item ticket first-class-ticket">
+                       <div class="inner-wrapper">
+                           <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon-brown.png"></div>
+                           <h3>SAR 50</h3>
+                           <h6>First-class</h6>
+                           <h6>3-day pass</h6>
+                       </div>
+                   </div>
+               </a>
+           </div>
+
+           <div class="inner-wrapper">
+               <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon-brown.png"></div>
+               <a href="pay.html" class="ticket-link" onclick="addTicketToLocalStorage('First-class', '7-day pass', 'SAR 100')">
+                   <div class="col-md-3 improve-card-item ticket first-class-ticket">
+                       <div class="inner-wrapper">
+                           <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon-brown.png"></div>
+                           <h3>SAR 100</h3>
+                           <h6>First-class</h6>
+                           <h6>7-day pass</h6>
+                       </div>
+                   </div>
+               </a>
+           </div>
+
+           <div class="inner-wrapper">
+               <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon-brown.png"></div>
+               <a href="pay.html" class="ticket-link" onclick="addTicketToLocalStorage('First-class', '30-day pass', 'SAR 350')">
+                   <div class="col-md-3 improve-card-item ticket first-class-ticket">
+                       <div class="inner-wrapper">
+                           <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon-brown.png"></div>
+                           <h3>SAR 350</h3>
+                           <h6>First-class</h6>
+                           <h6>30-day pass</h6>
+                       </div>
+                   </div>
+               </a>
+           </div>
+       </div>
+
+       <h3 id="hero-title">Regular:</h3>
+       <hr>
+       <p id="hero-subtitle">Designed specifically for individuals and families, including women-only areas, these cabins provide a safe and welcoming environment for groups as well as singles.</p>
+
+       <div class="tickets my-5">
+           <!-- Regular Tickets -->
+           <div class="inner-wrapper">
+               <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon.png"></div>
+               <a href="pay.html" class="ticket-link" onclick="addTicketToLocalStorage('Regular', '2-hour pass', 'SAR 4')">
+                   <div class="col-md-3 improve-card-item ticket first-class-ticket">
+                       <div class="inner-wrapper">
+                           <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon-brown.png"></div>
+                           <h3>SAR 4</h3>
+                           <h6>Regular</h6>
+                           <h6>2-hour pass</h6>
+                       </div>
+                   </div>
+               </a>
+           </div>
+
+           <div class="inner-wrapper">
+               <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon.png"></div>
+               <a href="pay.html" class="ticket-link" onclick="addTicketToLocalStorage('Regular', '3-day pass', 'SAR 20')">
+                   <div class="col-md-3 improve-card-item ticket first-class-ticket">
+                       <div class="inner-wrapper">
+                           <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon-brown.png"></div>
+                           <h3>SAR 20</h3>
+                           <h6>Regular</h6>
+                           <h6>3-day pass</h6>
+                       </div>
+                   </div>
+               </a>
+           </div>
+
+           <div class="inner-wrapper">
+               <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon.png"></div>
+               <a href="pay.html" class="ticket-link" onclick="addTicketToLocalStorage('Regular', '7-day pass', 'SAR 40')">
+                   <div class="col-md-3 improve-card-item ticket first-class-ticket">
+                       <div class="inner-wrapper">
+                           <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon-brown.png"></div>
+                           <h3>SAR 40</h3>
+                           <h6>Regular</h6>
+                           <h6>7-day pass</h6>
+                       </div>
+                   </div>
+               </a>
+           </div>
+
+           <div class="inner-wrapper">
+               <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon.png"></div>
+               <a href="pay.html" class="ticket-link" onclick="addTicketToLocalStorage('Regular', '30-day pass', 'SAR 140')">
+                   <div class="col-md-3 improve-card-item ticket first-class-ticket">
+                       <div class="inner-wrapper">
+                           <div class="circular-wrapper"><img alt="" src="/o/rcrc-theme/images/rcrc/tickettick-icon-brown.png"></div>
+                           <h3>SAR 140</h3>
+                           <h6>Regular</h6>
+                           <h6>30-day pass</h6>
+                       </div>
+                   </div>
+               </a>
+           </div>
+       </div>
+   </div>
+</div>
+<!--FOOTER SECTION-->
+<div class="footer__container">
+    <div class="footer__links">
+        <div class="footer__link--wrapper">
+            <div class="footer__link--items">
+                <h2>Help</h2>
+                <a href="/">Contact Us</a>
+                <a href="ChatBot.html">Chat Bot</a>
+                <a href="/">Terms Of Service</a>
+            </div>
+        </div>
+    </div>
+    <!--hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhherrre-->
+            <div class="footer__logo">
+                <a href="/" id="navbar__logo">
+                    <img src="img/logo.jpg" alt="Logo" class="navbar__logo-image" />
+                  </a>  
+            </div>
+            <p class="website__rights">FLOW 2025. All rights reserved</p>
+        </div>
+    </div>
+   </div>
+<script>
+   function addTicketToLocalStorage(ticketType, duration, price) {
+       const tickets = JSON.parse(localStorage.getItem('myTickets')) || [];
+       tickets.push({ type: ticketType, duration: duration, price: price });
+       localStorage.setItem('myTickets', JSON.stringify(tickets));
+   }
+</script>
+
+
+
+</body>
+</html>

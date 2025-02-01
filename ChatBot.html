@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Bot</title>
+    <script src="https://kit.fontawesome.com/d510b38842.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Kumbh Sans', sans-serif;
+        }
+        
+        .navbar{
+            background: #fff;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .navbar {
+            background: #fff;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            position: fixed; /* هذا يثبت الـ Navbar في مكانه */
+            top: 0; /* يحط الـ Navbar في أعلى الصفحة */
+            width: 100%; /* عشان ياخذ عرض الصفحة بالكامل */
+            z-index: 999; /* لتحديد ترتيب الـ Navbar فوق العناصر الأخرى */
+          }
+        
+        .navbar__container{
+            display: flex;
+            justify-content: space-between;
+            height: 80px;
+            z-index: 1;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+        
+        #navbar__logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .navbar__logo-image {
+            width: 200px; 
+            height: auto; 
+            border-radius: 4px; 
+        }
+        
+        
+        .fa-gem{
+            margin-right: 0.5rem;
+        }
+        
+        .navbar__menu{
+            display: flex;
+            align-items: center;
+            list-style: none;
+            text-align: center;
+        }
+        
+        .navbar__item{
+            height: 80px;
+        }
+        
+        .navbar__links{
+            color: #1b1741;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 0 1rem;
+            height: 100%;
+        }
+        
+        @media screen and (max-width: 960px){
+            .navbar__container{
+                display: flex;
+                justify-content: space-between;
+                height: 80px;
+                z-index: 1;
+                width: 100%;
+                max-width: 1300px;
+                padding: 0;
+            }
+            .navbar__menu{
+                display: grid;
+                grid-template-columns: auto;
+                margin: 0;
+                width: 100%;
+                position: absolute;
+                top: -1000px;
+                opacity: 0;
+                transition: all 0.5s ease;
+                height: 50vh;
+                z-index: -1;
+                background: #fff;
+            }
+        
+            .navbar__menu.active{
+                background: #fff;
+                top: 100%;
+                opacity: 1;
+                transition: all 0.5s ease;
+                z-index: 99;
+                height: 50vh;
+                font-size: 1.5rem;
+            }
+        
+            #navbar__logo{
+                padding-left: 25px;
+            }
+        
+            .navbar__toggle.bar{
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                transition: all 0.3s ease-in-out;
+                background: #141414;
+            }
+        
+            .navbar__item{
+                width: 100%;
+            }
+        
+            .navbar__links{
+                text-align: center;
+                padding: 2rem;
+                width: 100%;
+                display: table;
+            }
+        
+            #mobile-menu{
+                position: absolute;
+                top: 20%;
+                right: 5%;
+                transform: translate(5%,20%);
+            }
+            .navbar__toggle .bar{
+                display: block;
+                cursor: pointer;
+            }
+            #mobile-menu.is-active .bar:nth-child(2){
+                opacity: 0;
+            }
+            #mobile-menu.is-active .bar:nth-child(1){
+                transform: translate(8px) rotate(45deg);
+            }
+            #mobile-menu.is-active .bar:nth-child(3){
+                transform: translate(-8px) rotate(-45deg);
+            }
+        }
+
+        .chatbot-container {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 350px;
+                background-color: #1b1741;
+                border-radius: 15px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                display: flex;
+                flex-direction: column;
+                left: 50%; 
+                transform: translateX(-50%);  
+        }
+
+        .chatbot-header {
+            background-color: #1b1741;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .chatbot-header i {
+            margin-right: 10px;
+        }
+
+        .chatbot-header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .chatbot-body {
+            background-color: white;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .chatbot-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-bottom-left-radius: 15px;
+            background-color: #d3d3d3;
+        }
+
+        .chatbot-input button {
+            background-color: #1b1741;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-bottom-right-radius: 15px;
+            cursor: pointer;
+        }
+
+        .chatbot-input button:hover {
+            background-color:yellowgreen;
+        }
+
+        .message {
+            margin: 10px 0;
+        }
+
+        .message.user {
+            text-align: right;
+            color: #1b1741;
+        }
+
+        .message.bot {
+            text-align: left;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLOW</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/d510b38842.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--NAVBAR SECTION-->
+   <nav class="navbar">
+    <div class="navbar__container">
+        <a href="/" id="navbar__logo">
+            <img src="img/logo.jpg" alt="Logo" class="navbar__logo-image" />
+          </a>    
+         <div class="navbar__toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+            <li class="navbar__item">
+                <a href="/" class="navbar__links">Home</a>
+            </li> 
+            <!--ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc-->
+            <li class="navbar__item">
+                <a href="/tracks" class="navbar__links">Tracks</a>
+                <ul class="dropdown">
+                    <li><a id="Lin-P"href="Pline.html">Purple line</a></li>
+                    <li><a id="Lin-B"href="Bline.html">Blue line</a></li>
+                    <li><a id="Lin-R"href="Rline.html">Red line</a></li>
+                    <li><a id="Lin-O"href="Oline.html">Orange line</a></li>
+                    <li><a id="Lin-Y"href="Yline.html">Yellow line</a></li>
+                    <li><a id="Lin-G"href="Gline.html">Green line</a></li>
+                </ul>
+            </li>
+            <li class="navbar__item">
+                <a href="/tickets" class="navbar__links">Tickets</a>
+                <ul class="dropdown">
+                    <li><a id="T-Buy"href="buyTicket.html">Buy Ticket</a></li>
+                    <li><a id="T-My"href="MyTicket.html">My Ticket</a></li>
+                </ul>
+            </li>
+            <li class="navbar__item">
+                <a href="/plan" class="navbar__links">Plan</a>
+                <ul class="dropdown">
+                    <li><a id="P-PYT"href="trip-planning.html">Plan Your Trip</a></li>
+                    <li><a id="P-VS"href="ViewSchedule.html">View Schedule</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+   </nav>
+    <div class="chatbot-container">
+        <div class="chatbot-header">
+            <i class="fas fa-robot"></i>
+            <h2>FLOW ChatBot</h2>
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+            <div class="message bot">Hello there! I am FLOW Chat Bot, How can I help?</div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Type your message here...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('send-button').addEventListener('click', function() {
+            const userInputField = document.getElementById('user-input');
+            const userMessage = userInputField.value.trim();
+        
+            if (userMessage) {
+                const chatBox = document.getElementById('chatbot-body');
+        
+                // Display user's message
+                const userMessageElement = document.createElement('div');
+                userMessageElement.classList.add('message', 'user');
+                userMessageElement.textContent = userMessage;
+                chatBox.appendChild(userMessageElement);
+        
+                // Clear the input field after sending
+                userInputField.value = '';
+        
+                console.log('Sending message to server:', userMessage);  // Debug log
+        
+                // Send message to Flask backend
+                fetch('http://127.0.0.1:5000/chatbot', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Access-Control-Allow-Origin': '*', // Allow all origins
+                        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', // Allow required methods
+                    },
+                    body: JSON.stringify({ message: userMessage })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response from server:', data);  // Debug log
+        
+                    // Display bot's response
+                    const botMessageElement = document.createElement('div');
+                    botMessageElement.classList.add('message', 'bot');
+                    botMessageElement.textContent = data.response;
+                    chatBox.appendChild(botMessageElement);
+                })
+                .catch(error => {
+                    console.error('Error:', error);  // Debug log for errors
+                });
+            }
+        });        
+    </script>
+    </body>    
+</html>
