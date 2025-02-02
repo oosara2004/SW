@@ -1,3 +1,1 @@
-# CS290-<Sara><Alsadoon>  
-Author: <sara> <Alsadoon>  
-Dalya Alahmari
+# CS290-project
