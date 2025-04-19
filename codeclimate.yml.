@@ -1,0 +1,8 @@
+version: "2"
+plugins:
+  eslint:
+    enabled: true
+    channel: "stable"
+  rubocop:
+    enabled: true
+    channel: "stable"
