@@ -1,6 +1,6 @@
 #functional 
 import pytest
-from app import app
+from helpChatBot import app
 
 @pytest.fixture
 def client():
