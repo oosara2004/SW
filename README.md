@@ -1,1 +1,1 @@
-# CS290-project
+# Software project
